@@ -1,0 +1,46 @@
+
+<div class="span9 content">
+  <%= create_guide("Upload Pictures", 
+        "Upload Pictures for project:  <b>#{@project.title}</b>" + "<br />" + 
+        "Total Uploaded Files: <b>#{@total_original_pictures_count}</b>" + "<br />" + 
+        "<b>Description</b>: #{@project.description}").html_safe %>
+  
+
+  <div class="alert alert-success">
+    <strong>Pilipoto Update!</strong> Thank you for using pilipoto. <br /><br />
+     To improve our service, we updated our image uploader
+    that is faster and more resilient. However, the new uploader might make you confused. Don't worry, we have prepared a  tutorial. Here is the download link: <%= link_to "Guide", NEW_UPLOADER_GUIDE_URL  %>
+  </div>
+    
+  <%= create_breadcrumb(@breadcrumbs).html_safe %>
+  
+  
+  
+  
+  <%= render :partial => "pictures/uploader/plupload_uploader" %>
+  <%= render :partial => "pictures/inline_css/plupload_css"%>
+  <%= render :partial => "pictures/inline_js/plupload_js"%>
+ 
+  
+  <%#= render :partial => "pictures/uploader/uploadify_uploader" %>
+  <%#= render :partial => "pictures/inline_css/uploadify_css"%>
+  <%#= render :partial => "pictures/inline_js/uploadify_js"%>
+    
+
+  <!-- display the uploaded image here!  -->
+  <div class="span12">
+    
+    <ul class="thumbnails" id="uploaded_image_container">
+      <% @pictures.each do |picture| %>
+        <%= render :partial => "pictures/submitted_picture_display" , :locals => {
+          :picture => picture
+        }%>
+      
+      
+   
+
+      <% end %>
+    </ul>
+  </div>
+  
+</div><!--/span-->
